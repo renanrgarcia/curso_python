@@ -21,14 +21,22 @@
 # l1 = {1,2,3,3,3,3,1}
 # s1 = set(l1)
 # l2 = s1
-s1 = {1, 2, 3}
+# s1 = {1, 2, 3}
 # print(4 in s1)
-for numero in s1:
-    print(numero)
+# for numero in s1:
+#     print(numero)
 
 
 # Métodos úteis:
 # add, update, clear, discard
+s1 = set()
+s1.add('Luiz')
+s1.add(1)
+s1.update(('Olá mundo', 1, 2, 3, 4))
+# s1.clear()
+s1.discard('Olá mundo')
+print(s1)
+
 
 # Operadores úteis:
 # união | união (union) - Une
