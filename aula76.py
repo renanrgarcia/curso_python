@@ -9,22 +9,18 @@
 # pop - Apaga um item com a chave especificada (del)
 # popitem - Apaga o último item adicionado
 # update - Atualiza um dicionário com outro
-pessoa = {
-    'nome': 'Luiz Otávio',
-    'sobrenome': 'Miranda 3',
-    # 'idade': 900
+import copy
+
+d1 = {
+    'c1': 1,
+    'c2': 2,
+    'l1': [0, 1, 2]
 }
+d2 = copy.deepcopy(d1)
+# d2 = d1.copy()
 
-pessoa.setdefault('idade', 0)
-print(pessoa['idade'])
-# print(len(pessoa))
-# print(list(pessoa.keys()))
-# print(list(pessoa.values()))
-# print(list(pessoa.items()))
+d2['c1'] = 1000
+d2['l1'][1] = 99999 
 
-
-# for chave in pessoa.values():
-#     print(chave)
-
-# for chave, valor in pessoa.items():
-#     print(chave, valor)
+print(d1)
+print(d2)
