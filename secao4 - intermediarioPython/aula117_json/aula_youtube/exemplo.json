@@ -1,0 +1,9 @@
+{
+    "name": "Renan", 
+    "lastname": "Garcia", 
+    "age": 31,
+    "addresses": [
+        {"line1": "av. Brasil"},
+        {"line2": "av. Amapá"}
+    ]
+}
