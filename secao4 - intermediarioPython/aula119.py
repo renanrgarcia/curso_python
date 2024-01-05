@@ -15,31 +15,77 @@ def limpar_tela():
     return os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def
-
-
-def listar(lista=None):
-    if lista == None:
+def listar(tarefas):
+    print()
+    if not tarefas:
         print('Nada a listar')
-    return
+        print()
+        return
+
+    print("TAREFAS:")
+    for tarefa in tarefas:
+        print(f'\t{tarefa}')
+    print()
 
 
-def desfazer(lista=None):
-    if lista == None:
-        print('Nada a listar')
-    return
+def desfazer(tarefas, tarefas_refazer):
+    print()
+    if not tarefas:
+        print('Nada a desfazer')
+        print()
+        return
+
+    tarefa = tarefas.pop()
+    print(f'{tarefa} removida da lista de tarefas.')
+    tarefas_refazer.append(tarefa)
+    print()
 
 
-def refazer(lista=None):
-    if lista == None:
-        print('Nada a listar')
-    return
+def refazer(tarefas, tarefas_refazer):
+    print()
+    if not tarefas_refazer:
+        print('Nada a refazer')
+        print()
+        return
+
+    tarefa_refeita = tarefas_refazer.pop()
+    print(f'{tarefa} adicionada à lista de tarefas.')
+    tarefas.append(tarefa_refeita)
+    print()
 
 
-resposta = input('Comandos: listar, desfazer, refazer ou limpar: ')
+def adicionar(tarefa, tarefas):
+    tarefa = tarefa.strip()
+    if not tarefa:
+        print('Você não digitou uma tarefa')
+        return
+    tarefas.append(tarefa)
+    return f'\n Tarefa incluída! \n'
 
-if resposta.lower() == 'limpar':
-    limpar_tela()
 
-if resposta.lower() == 'listar':
-    listar()
+tarefas_refazer = []
+tarefas = []
+
+while True:
+    tarefa = input(
+        'Comandos: limpar, listar, desfazer ou refazer  \n'
+        'Digite uma tarefa ou comando: '
+    )
+
+    if tarefa.lower() == 'limpar':
+        limpar_tela()
+
+    elif tarefa.lower() == 'listar':
+        listar(tarefas)
+
+    elif tarefa.lower() == 'desfazer':
+        desfazer(tarefas, tarefas_refazer)
+        listar(tarefas)
+
+    elif tarefa.lower() == 'refazer':
+        refazer(tarefas, tarefas_refazer)
+        listar(tarefas)
+
+    else:
+        adicionar(tarefa, tarefas)
+        listar(tarefas)
