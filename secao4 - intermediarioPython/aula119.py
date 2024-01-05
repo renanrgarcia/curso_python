@@ -39,6 +39,7 @@ def desfazer(tarefas, tarefas_refazer):
     print(f'{tarefa} removida da lista de tarefas.')
     tarefas_refazer.append(tarefa)
     print()
+    listar(tarefas)
 
 
 def refazer(tarefas, tarefas_refazer):
@@ -52,6 +53,7 @@ def refazer(tarefas, tarefas_refazer):
     print(f'{tarefa} adicionada à lista de tarefas.')
     tarefas.append(tarefa_refeita)
     print()
+    listar(tarefas)
 
 
 def adicionar(tarefa, tarefas):
@@ -60,6 +62,7 @@ def adicionar(tarefa, tarefas):
         print('Você não digitou uma tarefa')
         return
     tarefas.append(tarefa)
+    listar(tarefas)
     return f'\n Tarefa incluída! \n'
 
 
@@ -72,20 +75,32 @@ while True:
         'Digite uma tarefa ou comando: '
     )
 
-    if tarefa.lower() == 'limpar':
-        limpar_tela()
+    comandos = {
+        'listar': lambda: listar(tarefas),
+        'desfazer': lambda: desfazer(tarefas, tarefas_refazer),
+        'refazer': lambda: refazer(tarefas, tarefas_refazer),
+        'limpar': lambda: limpar_tela(),
+        'adicionar': lambda: adicionar(tarefa, tarefas),
+    }
 
-    elif tarefa.lower() == 'listar':
-        listar(tarefas)
+    comando = comandos.get(tarefa) if comandos.get(
+        tarefa) is not None else comandos['adicionar']
+    comando()
 
-    elif tarefa.lower() == 'desfazer':
-        desfazer(tarefas, tarefas_refazer)
-        listar(tarefas)
+    # if tarefa.lower() == 'limpar':
+    #     limpar_tela()
 
-    elif tarefa.lower() == 'refazer':
-        refazer(tarefas, tarefas_refazer)
-        listar(tarefas)
+    # elif tarefa.lower() == 'listar':
+    #     listar(tarefas)
 
-    else:
-        adicionar(tarefa, tarefas)
-        listar(tarefas)
+    # elif tarefa.lower() == 'desfazer':
+    #     desfazer(tarefas, tarefas_refazer)
+    #     listar(tarefas)
+
+    # elif tarefa.lower() == 'refazer':
+    #     refazer(tarefas, tarefas_refazer)
+    #     listar(tarefas)
+
+    # else:
+    #     adicionar(tarefa, tarefas)
+    #     listar(tarefas)
