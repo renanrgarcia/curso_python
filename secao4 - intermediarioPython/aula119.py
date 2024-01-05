@@ -9,6 +9,9 @@
 # refazer = todo ['fazer café']
 # refazer = todo ['fazer café', 'caminhar']
 import os
+import json
+
+CAMINHO_JSON = r'D:\projects\curso_python\secao4 - intermediarioPython\aula119.json'
 
 
 def limpar_tela():
@@ -66,8 +69,32 @@ def adicionar(tarefa, tarefas):
     return f'\n Tarefa incluída! \n'
 
 
+def ler(tarefas, caminho_arquivo):
+    try:
+        dados = []
+        with open(caminho_arquivo, 'r', encoding='utf8') as arquivo:
+            dados = json.load(arquivo)
+        return dados
+    except FileNotFoundError:
+        print('Arquivo não existe')
+        salvar(tarefas, caminho_arquivo)
+    return dados
+
+
+def salvar(tarefas, caminho_arquivo):
+    dados = tarefas
+    with open(caminho_arquivo, 'w', encoding='utf8') as arquivo:
+        dados = json.dump(
+            tarefas,
+            arquivo,
+            indent=2,
+            ensure_ascii=False
+        )
+    return dados
+
+
 tarefas_refazer = []
-tarefas = []
+tarefas = ler([], CAMINHO_JSON)
 
 while True:
     tarefa = input(
@@ -86,6 +113,7 @@ while True:
     comando = comandos.get(tarefa) if comandos.get(
         tarefa) is not None else comandos['adicionar']
     comando()
+    salvar(tarefas, CAMINHO_JSON)
 
     # if tarefa.lower() == 'limpar':
     #     limpar_tela()
