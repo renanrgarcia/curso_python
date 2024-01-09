@@ -36,13 +36,8 @@ class A:
 class B(A):
     ...
 
-<<<<<<< HEAD:secao5 - introducao a POO com Python - Classes/aula140.py
     def quem_sou(self):
         print('B')
-=======
-    # def quem_sou(self):
-    #     print('B')
->>>>>>> 6f8001c00c4ecb65b4df301b7b79a772d9624337:secao5-introducao_a_POO_com_Python-Classes/aula140.py
 
 
 class C(A):
@@ -61,8 +56,3 @@ class D(B, C):
 
 d = D()
 d.quem_sou()
-<<<<<<< HEAD:secao5 - introducao a POO com Python - Classes/aula140.py
-=======
-# print(D.__mro__)
-print(D.mro())
->>>>>>> 6f8001c00c4ecb65b4df301b7b79a772d9624337:secao5-introducao_a_POO_com_Python-Classes/aula140.py
