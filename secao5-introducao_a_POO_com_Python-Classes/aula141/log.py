@@ -2,7 +2,7 @@
 # Herança - é um
 from pathlib import Path
 
-LOG_FILE = Path(__file__).parent
+LOG_FILE = Path(__file__).parent / 'log.txt'
 
 
 class Log:
@@ -18,7 +18,11 @@ class Log:
 
 class LogFileMixin(Log):
     def _log(self, msg):
-        print(msg)
+        msg_formatada = f'{msg} ({self.__class__.__name__})'
+        print('Salvando no log:', msg_formatada)
+        with open(LOG_FILE, 'a', encoding='utf8') as arquivo:
+            arquivo.write(msg_formatada)
+            arquivo.write('\n')
 
 
 class LogPrintMixin(Log):
@@ -27,7 +31,9 @@ class LogPrintMixin(Log):
 
 
 if __name__ == '__main__':
-    l = LogPrintMixin()
-    l.log_error('qualquer coisa')
-    l.log_success('que legal')
-    print(LOG_FILE)
+    lp = LogPrintMixin()
+    lp.log_error('qualquer coisa')
+    lp.log_success('que legal')
+    lf = LogFileMixin()
+    lf.log_error('qualquer coisa')
+    lf.log_success('que legal')
