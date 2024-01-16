@@ -1,43 +1,50 @@
-from abc import ABC, abstractmethod
-from contas import ContaCorrente, ContaPoupanca
+import contas
 
 
-class Pessoa(ABC):
-    def __init__(self, nome, idade) -> None:
-        self._nome = nome
-        self._idade = idade
+class Pessoa:
+    def __init__(self, nome: str, idade: int) -> None:
+        self.nome = nome
+        self.idade = idade
 
     @property
-    @abstractmethod
-    def nome(self): ...
+    def nome(self):
+        return self._nome
 
     @nome.setter
-    @abstractmethod
-    def nome(self, valor): ...
+    def nome(self, nome: str):
+        self._nome = nome
 
     @property
-    @abstractmethod
-    def idade(self): ...
+    def idade(self):
+        return self._idade
 
     @idade.setter
-    @abstractmethod
-    def idade(self, valor):
-        self._idade = valor
+    def idade(self, idade: int):
+        self._idade = idade
+
+    def __repr__(self) -> str:
+        class_name = type(self).__name__
+        attrs = f'({self.nome!r}, {self.idade!r})'
+        return f'{class_name}{attrs}'
 
 
 class Cliente(Pessoa):
     def __init__(
-        self, nome: str, idade: int,
-        conta_poupanca: ContaPoupanca, conta_corrente: ContaCorrente
+        self, nome: str, idade: int
     ) -> None:
         super().__init__(nome, idade)
-        self.conta_poupanca = conta_poupanca
-        self.conta_corrente = conta_corrente
-
-    @Pessoa.nome.setter
-    def nome(self, valor):
-        self.nome = valor
+        self.conta: contas.Conta | None = None
 
 
 if __name__ == '__main__':
-    c1 = Cliente('Renan', 31, (123, 123, 10), (321, 321, 10, 10))
+    cliente1 = Cliente('Renan', 31)
+    cc1 = contas.ContaCorrente(123, 123, 0.00, 100.00)
+    cliente1.conta = cc1
+    print(cliente1)
+    print(cliente1.conta)
+
+    cliente2 = Cliente('Thaís', 31)
+    cp1 = contas.ContaPoupanca(321, 321, 0.00)
+    cliente2.conta = cp1
+    print(cliente2)
+    print(cliente2.conta)
