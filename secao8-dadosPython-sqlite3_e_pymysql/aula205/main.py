@@ -37,7 +37,7 @@ sql = (
     'VALUES '
     '(:nome, :peso)'
 )
-print(sql)
+
 # cursor.execute(sql, ['Renan Garcia', 9.9])
 # cursor.executemany(
 #     sql,
@@ -59,3 +59,6 @@ connection.commit()
 
 cursor.close()
 connection.close()
+
+if __name__ == '__main__':
+    print(sql)
