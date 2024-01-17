@@ -38,7 +38,13 @@ sql = (
     '(?, ?)'
 )
 print(sql)
-cursor.execute(sql, ['Renan Garcia', 9.9])
+# cursor.execute(sql, ['Renan Garcia', 9.9])
+cursor.executemany(
+    sql,
+    [
+        ['Renan', 9.9], ['Thaís', 13.8]  # Também podem ser tuplas
+    ]
+)
 connection.commit()
 
 cursor.close()
