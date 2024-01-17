@@ -35,15 +35,25 @@ sql = (
     f'INSERT INTO {TABLE_NAME} '
     '(name, weight) '
     'VALUES '
-    '(?, ?)'
+    '(:nome, :peso)'
 )
 print(sql)
 # cursor.execute(sql, ['Renan Garcia', 9.9])
+# cursor.executemany(
+#     sql,
+#     [
+#         ['Renan', 9.9], ['Thaís', 13.8]  # Também podem ser tuplas
+#     ]
+# )
+# cursor.execute(sql, {'nome': 'Renan Garcia', 'peso': 9.9})
 cursor.executemany(
     sql,
-    [
-        ['Renan', 9.9], ['Thaís', 13.8]  # Também podem ser tuplas
-    ]
+    (
+        {'nome': 'Renan Garcia', 'peso': 9.9},
+        {'nome': 'Thaís Andrade', 'peso': 13.8},
+        {'nome': 'Aurora', 'peso': 10.9},
+        {'nome': 'Pedro', 'peso': 15.9},
+    )
 )
 connection.commit()
 
