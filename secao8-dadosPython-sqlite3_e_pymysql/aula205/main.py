@@ -76,6 +76,13 @@ if __name__ == '__main__':
     connection.commit()
 
     cursor.execute(
+        f'UPDATE {TABLE_NAME} '
+        'SET name="QUALQUER", weight=68.09 '
+        'WHERE id = 2'
+    )
+    connection.commit()
+
+    cursor.execute(
         f'SELECT * FROM {TABLE_NAME}'
     )
 
