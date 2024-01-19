@@ -32,6 +32,7 @@ with connection:
         cursor.execute(f'TRUNCATE TABLE {TABLE_NAME}')
     connection.commit()  # Facultativo para CREATE TABLE
 
+    # Começo a manipular dados a partir daqui
     with connection.cursor() as cursor:
         result = cursor.execute(
             f'INSERT INTO {TABLE_NAME} '
