@@ -121,16 +121,31 @@ with connection:
         # for row in data5:
         #     print(row)
 
-    # Apagando valores com DELETE
+    # Apagando valores com DELETE, WHERE e placeholders no PyMySQL
     with connection.cursor() as cursor:
         sql = (
             f'DELETE FROM {TABLE_NAME} '
             'WHERE id = %s '
         )
-        print(cursor.execute(sql, 5))
+        cursor.execute(sql, 5,)
         connection.commit()
+
+        cursor.execute(f'SELECT * FROM {TABLE_NAME} ')  # type: ignore
+
+        # for row in cursor.fetchall():
+        #     print(row)
+
+    # Editando valores com UPDATE, WHERE e placeholders no PyMySQL
+    with connection.cursor() as cursor:
+        sql = (
+            f'UPDATE {TABLE_NAME} '
+            'SET nome = %s, idade = %s '
+            'WHERE id = %s '
+        )
+        cursor.execute(sql, ('Roger', 108, 4))
 
         cursor.execute(f'SELECT * FROM {TABLE_NAME} ')  # type: ignore
 
         for row in cursor.fetchall():
             print(row)
+    connection.commit()
