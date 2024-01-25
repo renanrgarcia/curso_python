@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from blog.data import posts
 
 
 def blog(request):
@@ -6,7 +7,8 @@ def blog(request):
 
     context = {
         'text': 'Olá blog',
-        'title': 'Página blog - '
+        'title': 'Página blog - ',
+        'posts': posts
     }
 
     return render(
