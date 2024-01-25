@@ -3,6 +3,22 @@ from blog.data import posts
 
 
 def blog(request):
+    print('post', id)
+
+    context = {
+        'text': 'Olá blog',
+        'title': 'Página blog - ',
+        'posts': posts
+    }
+
+    return render(
+        request,
+        'blog/index.html',
+        context
+    )
+
+
+def post(request, id):
     print('blog')
 
     context = {
