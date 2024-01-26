@@ -6,10 +6,10 @@ import pymysql
 import pymysql.cursors
 import dotenv
 import os
-from typing import cast
+# from typing import cast
 
 TABLE_NAME = 'customers'
-CURRENT_CURSOR = pymysql.cursors.SSDictCursor
+CURRENT_CURSOR = pymysql.cursors.DictCursor
 
 dotenv.load_dotenv()
 
@@ -81,7 +81,7 @@ with connection:
             {"name": "John", "age": 74, },
             {"name": "Rose", "age": 53, },
         )
-        result = cursor.executemany(sql, data3)
+        result = cursor.executemany(sql, data3)  # type: ignore
         # print(sql)
         # print(data3)
         # print(result)
@@ -100,7 +100,7 @@ with connection:
             ("Helena", 15, ),
             ("Renan", 30, ),
         )
-        result = cursor.executemany(sql, data4)
+        result = cursor.executemany(sql, data4)  # type: ignore
         # print(sql)
         # print(data2)
         # print(data4)
@@ -150,16 +150,10 @@ with connection:
 
         cursor.execute(f'SELECT * FROM {TABLE_NAME} ')
 
-        print('For 1:')
-        for row in cursor.fetchall_unbuffered():
+        for row in cursor.fetchall():
             print(row)
 
             if row['id'] >= 5:
                 break
 
-        print()
-        print('For 2:')
-        cursor.scroll(1)
-        for row in cursor.fetchall_unbuffered():
-            print(row)
     connection.commit()
