@@ -6,8 +6,10 @@ import pymysql
 import pymysql.cursors
 import dotenv
 import os
+from typing import cast
 
 TABLE_NAME = 'customers'
+CURRENT_CURSOR = pymysql.cursors.SSDictCursor
 
 dotenv.load_dotenv()
 
@@ -17,7 +19,7 @@ connection = pymysql.connect(
     password=os.environ['MYSQL_PASSWORD'],
     database=os.environ['MYSQL_DATABASE'],
     charset='utf8mb4',
-    cursorclass=pymysql.cursors.DictCursor,
+    cursorclass=CURRENT_CURSOR,
 )
 
 with connection:
@@ -44,7 +46,7 @@ with connection:
             'VALUES (%s, %s) '
         )
         data = ('Thaís', 31)
-        result = cursor.execute(sql, data)  # type: ignore
+        result = cursor.execute(sql, data)
         # print(sql)
         # print(result)
     connection.commit()
@@ -60,7 +62,7 @@ with connection:
             "age": 30,
             "name": "Renan",
         }
-        result = cursor.execute(sql, data2)  # type: ignore
+        result = cursor.execute(sql, data2)
         # print(sql)
         # print(data2)
         # print(result)
@@ -79,7 +81,7 @@ with connection:
             {"name": "John", "age": 74, },
             {"name": "Rose", "age": 53, },
         )
-        result = cursor.executemany(sql, data3)  # type: ignore
+        result = cursor.executemany(sql, data3)
         # print(sql)
         # print(data3)
         # print(result)
@@ -98,7 +100,7 @@ with connection:
             ("Helena", 15, ),
             ("Renan", 30, ),
         )
-        result = cursor.executemany(sql, data4)  # type: ignore
+        result = cursor.executemany(sql, data4)
         # print(sql)
         # print(data2)
         # print(data4)
@@ -116,9 +118,9 @@ with connection:
             f'SELECT * FROM {TABLE_NAME} '
             'WHERE id BETWEEN %s AND %s '
         )
-        cursor.execute(sql, (menor_id, maior_id,))  # type: ignore
+        cursor.execute(sql, (menor_id, maior_id,))
         # print(cursor.mogrify(sql, (menor_id, maior_id,)))
-        data5 = cursor.fetchall()  # type: ignore
+        data5 = cursor.fetchall()
 
         # for row in data5:
         #     print(row)
@@ -132,7 +134,7 @@ with connection:
         cursor.execute(sql, 5,)
         connection.commit()
 
-        cursor.execute(f'SELECT * FROM {TABLE_NAME} ')  # type: ignore
+        cursor.execute(f'SELECT * FROM {TABLE_NAME} ')
 
         # for row in cursor.fetchall():
         #     print(row)
@@ -146,12 +148,18 @@ with connection:
         )
         cursor.execute(sql, ('Roger', 108, 4))
 
-        cursor.execute(f'SELECT * FROM {TABLE_NAME} ')  # type: ignore
+        cursor.execute(f'SELECT * FROM {TABLE_NAME} ')
 
-        # for row in cursor.fetchall():
-        #     _id, name, age = row
-        #     print(_id, name, age)
+        print('For 1:')
+        for row in cursor.fetchall_unbuffered():
+            print(row)
 
-        for row in cursor.fetchall():
+            if row['id'] >= 5:
+                break
+
+        print()
+        print('For 2:')
+        cursor.scroll(1)
+        for row in cursor.fetchall_unbuffered():
             print(row)
     connection.commit()
