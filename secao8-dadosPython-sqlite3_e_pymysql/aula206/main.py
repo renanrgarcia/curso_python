@@ -147,13 +147,37 @@ with connection:
             'WHERE id = %s '
         )
         cursor.execute(sql, ('Roger', 108, 4))
+        resultFromSelect = cursor.execute(f'SELECT * FROM {TABLE_NAME} ')
 
-        cursor.execute(f'SELECT * FROM {TABLE_NAME} ')
+        data6 = cursor.fetchall()
 
-        for row in cursor.fetchall():
+        for row in data6:
             print(row)
 
-            if row['id'] >= 5:
-                break
+        sql = (
+            f'INSERT INTO {TABLE_NAME} '
+            '(nome, idade) '
+            'VALUES '
+            '(%(name)s, %(age)s) '
+        )
+        data3 = (
+            {"name": "Sah", "age": 33, },
+            {"name": "John", "age": 74, },
+            {"name": "Rose", "age": 53, },
+        )
+        result = cursor.executemany(sql, data3)  # type: ignore
+
+        cursor.execute(
+            f'SELECT id FROM {TABLE_NAME} '
+            'ORDER BY id DESC LIMIT 1'
+        )
+        lastIdFromSelect = cursor.fetchone()
+
+        print('resultFromSelect', resultFromSelect)
+        print('len(data6)', len(data6))
+        print('cursor.rowcount', cursor.rowcount)
+        print('lastrowid', cursor.lastrowid)
+        print('lastrowid na mão', lastIdFromSelect['id'])
+        print('rownumber', cursor.rownumber)
 
     connection.commit()
