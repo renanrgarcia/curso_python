@@ -1,5 +1,5 @@
 from typing import Any
-from django.http import HttpRequest
+from django.http import Http404, HttpRequest
 from django.shortcuts import render
 from blog.data import posts
 
@@ -29,7 +29,7 @@ def post(request: HttpRequest, post_id: int):
             break
 
     if found_post is None:
-        raise Exception('Post não existe.')
+        raise Http404('Post não existe.')
 
     context = {
         # 'text': 'Olá blog',
