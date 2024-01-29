@@ -3,7 +3,7 @@ from blog.data import posts
 
 
 def blog(request):
-    print('post', id)
+    print('blog')
 
     context = {
         'text': 'Olá blog',
@@ -19,11 +19,10 @@ def blog(request):
 
 
 def post(request, id):
-    print('blog')
+    print('post', id)
 
     context = {
-        'text': 'Olá blog',
-        'title': 'Página blog - ',
+        # 'text': 'Olá blog',
         'posts': posts
     }
 
