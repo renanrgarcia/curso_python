@@ -1,0 +1,82 @@
+{
+    // "editor.fontSize": 18,
+    // "terminal.integrated.fontSize": 18,
+    "code-runner.runInTerminal": true,
+    "code-runner.executorMap": {
+        // "python": "clear ; python -u",
+        "python": ".\\venv\\Scripts\\activate ; clear ; python -u",
+    },
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.ignoreSelection": true,
+    "codeium.enableConfig": {
+        "*": true
+    },
+    "[django-html]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": true,
+            "strings": true
+        }
+    },
+    "editor.accessibilitySupport": "off",
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "emmet.includeLanguages": {
+        "django-html": "html", // batisteo.vscode-django
+        "javascript": "javascriptreact",
+        "typescript": "typescriptreact"
+    },
+    "explorer.compactFolders": false,
+    "files.associations": {
+        "*.js": "javascript",
+        "*.jsx": "javascriptreact",
+        "*.xml": "html",
+        "*.svg": "html",
+        "*.html": "html",
+        "django-html": "html", // batisteo.vscode-django
+        "**/*.html": "html",
+        "**/templates/**/*.html": "django-html",
+        "**/base_templates/**/*.html": "django-html",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    "editor.hover.enabled": true,
+    "[html]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": true,
+            "strings": true
+        }
+    },
+    "python.analysis.typeCheckingMode": "basic",
+    "python.terminal.activateEnvironment": true,
+    "python.languageServer": "Pylance", // ms-python.vscode-pylance
+    "python.testing.unittestEnabled": false, // ms-python.python
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8",
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.fixAll.unusedImports": "explicit",
+            "source.organizeImports": "explicit"
+        }
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.colorTheme": "OM Theme (Night Owl Italic)",
+    "workbench.startupEditor": "none",
+    "workbench.iconTheme": "material-icon-theme",
+    "hediet.vscode-drawio.resizeImages": null,
+}
