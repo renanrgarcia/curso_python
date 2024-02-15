@@ -5,31 +5,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meu HTML</title>
+
+  <style>
+    h1 {
+      background: red;
+    }
+
+    .img-in-text {
+      width: 500px;
+      height: 420px;
+    }
+
+    .vermelho {
+      color: red;
+      font-size: 28px;
+    }
+  </style>
+
 </head>
 
 <body>
+  <a href="https://developer.mozilla.org/pt-BR/" target="_blank">
+    <img src="https://seeklogo.com/images/M/mdn-logo-6DB9B0093F-seeklogo.com.png" alt="mdn logo" class="img-in-text">
+  </a>
   <h1>Meu título</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora excepturi sunt debitis, amet, atque nobis
-    necessitatibus reiciendis consequatur dolore voluptas placeat quam, possimus laboriosam modi ipsum blanditiis
-    temporibus similique? Quam.</p>
-  <h2>Meu título</h2>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus eaque impedit vel tenetur assumenda repellat ea
-    recusandae! Facere exercitationem, officiis assumenda sapiente quasi odio fuga aut quam vitae minus ut!</p>
-  <h2>Meu título</h2>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus eaque impedit vel tenetur assumenda repellat ea
-    recusandae! Facere exercitationem, officiis assumenda sapiente quasi odio fuga aut quam vitae minus ut!</p>
-  <h3>Meu título</h3>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore saepe velit quo! Quibusdam aut dolore molestias hic
-    asperiores magni dolorum. Debitis molestiae suscipit laudantium adipisci, harum corporis repudiandae esse odit.</p>
-    <h3>Meu título</h3>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore saepe velit quo! Quibusdam aut dolore molestias hic
-    asperiores magni dolorum. Debitis molestiae suscipit laudantium adipisci, harum corporis repudiandae esse odit.</p>
-    <h3>Meu título</h3>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore saepe velit quo! Quibusdam aut dolore molestias hic
-    asperiores magni dolorum. Debitis molestiae suscipit laudantium adipisci, harum corporis repudiandae esse odit.</p>
-  <h4>Meu título</h4>
-  <h5>Meu título</h5>
-  <h6>Meu título</h6>
+  <h1><a href="https://google.com" target="_blank">Meu link</a></h1>
+  <p><b>Lorem</b> <strong>strong</strong> <i>itálico</i> <em>emphasis</em> <del>deletar</del> <ins>inserir</ins> <br>
+    <s>riscar</s> <u>underline</u> <small>menor</small> 10<sup>2</sup> H<sub>2</sub>O <q cite="site.x">Citação</q>
+  </p>
+  <hr>
+
+  <code>console.log(x)</code>
+
+  <pre>
+if hasattr(string, metodo):
+  print(f'Existe {metodo}')
+  print(getattr(string, metodo)())
+else:
+  print('Não existe o método', metodo)
+  </pre>
+
+  <p><span class="vermelho">Lorem</span> ipsum dolor sit amet, consectetur adipisicing elit. <span
+      class="vermelho">Tempora excepturi
+      sunt
+      debitis, amet, atque</span> nobis necessitatibus reiciendis consequatur dolore voluptas placeat quam, possimus
+    laboriosam modi ipsum blanditiis temporibus similique? Quam.
+  </p>
+
+  <div class="vermelho">Eu sou um bloco</div>
+
+  <blockquote cite="https://www.webfx.com/web-design/html-ipsum/">
+    <p>Aqui é um bloco de citação</p>
+  </blockquote>
 </body>
 
 </html>
